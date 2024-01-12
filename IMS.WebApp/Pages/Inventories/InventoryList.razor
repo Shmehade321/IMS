@@ -1,0 +1,15 @@
+﻿@page "/inventories"
+
+<h3 class="display-6 mb-3"><i class="fa-solid fa-list"></i> Inventory List</h3>
+
+<SearchInventoryComponent OnSearchInventory="OnSearchInventory" />
+
+<InventoryListComponent SearchTerm="@searchTerm" />
+
+@code {
+    private string searchTerm = string.Empty;
+    private void OnSearchInventory(string search)
+    {
+        searchTerm = search;
+    }
+}
