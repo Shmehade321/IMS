@@ -4,10 +4,6 @@
     <ProjectReference Include="..\IMS.CoreBusiness\IMS.CoreBusiness.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Inventories/Interfaces/" />
-  </ItemGroup>
-
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

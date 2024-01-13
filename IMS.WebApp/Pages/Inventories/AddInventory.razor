@@ -1,0 +1,35 @@
+﻿@page "/inventories/add"
+
+@inject IAddInventoryUseCase AddInventoryUseCase
+@inject NavigationManager NavigationManager
+
+<h3><i class="fa-solid fa-plus"></i> Add Inventory</h3>
+
+<EditForm Model="inventory" OnInvalidSubmit="SaveInventory">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <InputText class="form-control" id="name" @bind-Value="inventory.Name" />
+    </div>
+    <div class="mb-3">
+        <label for="quantity" class="form-label">Quantity</label>
+        <InputNumber class="form-control" id="quantity" @bind-Value="inventory.Quantity" />
+    </div>
+    <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <InputNumber class="form-control" id="price" @bind-Value="inventory.Price" />
+    </div>
+    <button class="btn btn-primary" type="submit">Save</button>
+</EditForm>
+
+@code {
+    private Inventory inventory = new Inventory();
+
+    private async Task SaveInventory()
+    {
+        await AddInventoryUseCase.ExecuteAsync(inventory);
+        NavigationManager.NavigateTo("/inventories");
+    }
+}
