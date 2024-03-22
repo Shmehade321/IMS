@@ -7,7 +7,7 @@
         <tr>                
             <td>@item.Name</td>
             <td>@item.Quantity</td>
-            <td>@item.Price</td>
+            <td>@item.Price.ToString("c")</td>
             <td><a class="btn btn-dark btn-sm" @onclick="@(() => EditInventory(@item.Id))"><i class="fa-regular fa-pen-to-square"></i></a></td>
         </tr>
     }

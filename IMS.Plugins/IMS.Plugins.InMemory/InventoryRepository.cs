@@ -36,4 +36,34 @@ public class InventoryRepository : IInventoryRepository
 
         return await Task.FromResult(_inventories.Where(i => i.Name.Contains(name, StringComparison.OrdinalIgnoreCase)));
     }
+
+    public async Task<Inventory> GetInventoryByIdAsync(int id)
+    {
+        var inventory = _inventories.First(x => x.Id == id);
+        var newInventory = new Inventory
+        {
+            Id = inventory.Id,
+            Name = inventory.Name,
+            Quantity = inventory.Quantity,
+            Price = inventory.Price,
+        };
+
+        return await Task.FromResult(newInventory);
+    }
+
+    public Task UpdateInventoryAsync(Inventory inventory)
+    {
+        if (_inventories.Any(x => x.Id != inventory.Id && x.Name.Equals(inventory.Name, StringComparison.OrdinalIgnoreCase)))
+            return Task.CompletedTask;
+
+        var inv = _inventories.FirstOrDefault(x => x.Id == inventory.Id);
+        if(inv != null)
+        {
+            inv.Name = inventory.Name;
+            inv.Price = inventory.Price;
+            inv.Quantity = inventory.Quantity;
+        }
+
+        return Task.CompletedTask;
+    }
 }

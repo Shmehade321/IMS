@@ -22,6 +22,7 @@
         <InputNumber class="form-control" id="price" @bind-Value="inventory.Price" />
     </div>
     <button class="btn btn-primary" type="submit">Save</button>
+    <button type="button" class="btn btn-secondary" onclick="Cancel">Cancel</button>
 </EditForm>
 
 @code {
@@ -30,6 +31,11 @@
     private async Task SaveInventory()
     {
         await AddInventoryUseCase.ExecuteAsync(inventory);
+        NavigationManager.NavigateTo("/inventories");
+    }
+
+    private void Cancel()
+    {
         NavigationManager.NavigateTo("/inventories");
     }
 }
